@@ -29,6 +29,13 @@
     methods: {
       toggleMore(){
         this.hasMore = false;
+      },
+      getChildrenTextContent(children) {
+        return children.map(function (node) {
+          return node.children
+            ? getChildrenTextContent(node.children)
+            : node.text
+        }).join('')
       }
     },
     watch: {
@@ -45,8 +52,9 @@
       console.log(this);
       console.log(this.$slots.default);
       console.log(this.$slots.default[0].elm);
-      this.lotDesc = this.$el.textContent;
-      console.log('00:', this.lotDesc);
+      console.log('00:', this.$el.textContent);
+      this.lotDesc = this.getChildrenTextContent(this.$slots.default);
+      console.log(this.lotDesc)
 
     }
   }
