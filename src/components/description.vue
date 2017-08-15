@@ -36,18 +36,15 @@
         if (inItem.length > (parseInt(this.line) * 28) || inItem.split(`\n`) > parseInt(this.line)) {
           this.hasMore = true;
         }
-        this.hasMore ? this.remarkClass = 'lc-' + this.line + '' : '';
       },
       'hasMore': function (inItem) {
-        this.hasMore ? this.remarkClass = 'lc-' + this.line + '' : this.remarkClass = '';
-      },
-      'remarkClass': function (inItem) {
-        this.remarkClass += ' ' + this.className;
+        this.hasMore ? this.remarkClass = 'lc-' + this.line + ' ' + this.className : this.remarkClass = this.className;
       }
     },
     mounted(){
       console.log(this);
       console.log(this.$slots.default);
+      console.log(this.$slots.default[0].elm);
       this.lotDesc = this.$slots.default[0].elm.textContent;
       console.log('00:', this.lotDesc);
     }
