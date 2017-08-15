@@ -1,7 +1,7 @@
 <template>
     <div class="vue-description">
-      <p class="vue-description-remark" :class="remarkClass" v-html="this.lotDesc">
-        {{this.lotDesc}}
+      <p class="vue-description-remark" :class="remarkClass" >
+        {{desc}}
       </p>
       <div class="vue-description-more " v-show="hasMore" v-on:click="toggleMore()"></div>
     </div>
@@ -14,7 +14,6 @@
       return {
         remarkClass: '',
         hasMore: false,
-        lotDesc: ''
       }
     },
     props: {
@@ -36,17 +35,14 @@
       }
     },
     watch: {
-      'lotDesc': function (inItem) {
-        if (inItem.length > (parseInt(this.line) * 28) || inItem.split(`\n`) > parseInt(this.line)) {
-          this.hasMore = true;
-        }
-      },
       'hasMore': function (inItem) {
         this.hasMore ? this.remarkClass = 'lc-' + this.line + ' ' + this.className : this.remarkClass = this.className;
       }
     },
     mounted(){
-      this.lotDesc = this.desc;
+      if (this.desc.length > (parseInt(this.line) * 28) || this.desc.split(`\n`) > parseInt(this.line)) {
+        this.hasMore = true;
+      }
     }
   }
 </script>
