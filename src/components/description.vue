@@ -1,10 +1,10 @@
 <template>
-    <div class="vue-description">
-      <p class="vue-description-remark" :class="remarkClass" >
-        {{desc}}
-      </p>
-      <div class="vue-description-more " v-show="hasMore" v-on:click="toggleMore()"></div>
-    </div>
+  <div class="vue-description">
+    <p class="vue-description-remark" :class="remarkClass">
+      {{desc}}
+    </p>
+    <div class="vue-description-more " v-show="hasMore" v-on:click="toggleMore()"></div>
+  </div>
 </template>
 
 <script>
@@ -35,13 +35,13 @@
       }
     },
     watch: {
+      'desc': function (inItem) {
+        if (inItem.length > (parseInt(this.line) * 28) || inItem.split(`\n`) > parseInt(this.line)) {
+          this.hasMore = true;
+        }
+      },
       'hasMore': function (inItem) {
         this.hasMore ? this.remarkClass = 'lc-' + this.line + ' ' + this.className : this.remarkClass = this.className;
-      }
-    },
-    mounted(){
-      if (this.desc.length > (parseInt(this.line) * 28) || this.desc.split(`\n`) > parseInt(this.line)) {
-        this.hasMore = true;
       }
     }
   }
