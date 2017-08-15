@@ -48,7 +48,7 @@
     mounted(){
       console.log(this);
       console.log(this.$slots.default);
-      this.lotDesc = this.$slots.default[0].text;
+      this.lotDesc = this.$slots.default[0].elm.textContent;
       console.log('00:', this.lotDesc);
     }
   }
