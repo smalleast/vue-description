@@ -45,8 +45,9 @@
       console.log(this);
       console.log(this.$slots.default);
       console.log(this.$slots.default[0].elm);
-      this.lotDesc = this.$slots.default[0].elm.textContent;
+      this.lotDesc = this.$el.textContent;
       console.log('00:', this.lotDesc);
+
     }
   }
 </script>
