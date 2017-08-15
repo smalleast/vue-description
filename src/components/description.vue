@@ -1,10 +1,10 @@
 <template>
-  <div class="vue-description">
-    <p class="vue-description-remark" :class="remarkClass">
-      <slot></slot>
-    </p>
-    <div class="vue-description-more " v-show="hasMore" v-on:click="toggleMore()"></div>
-  </div>
+    <div class="vue-description">
+      <p class="vue-description-remark" :class="remarkClass" v-html="this.lotDesc">
+        {{this.lotDesc}}
+      </p>
+      <div class="vue-description-more " v-show="hasMore" v-on:click="toggleMore()"></div>
+    </div>
 </template>
 
 <script>
@@ -24,18 +24,15 @@
       line: {
         type: String,
         default: 3
+      },
+      desc: {
+        type: String,
+        default: ''
       }
     },
     methods: {
       toggleMore(){
         this.hasMore = false;
-      },
-      getChildrenTextContent(children) {
-        return children.map(function (node) {
-          return node.children
-            ? getChildrenTextContent(node.children)
-            : node.text
-        }).join('')
       }
     },
     watch: {
@@ -49,13 +46,7 @@
       }
     },
     mounted(){
-      console.log(this);
-      console.log(this.$slots.default);
-      console.log(this.$slots.default[0].elm);
-      console.log('00:', this.$el.textContent);
-      this.lotDesc = this.getChildrenTextContent(this.$slots.default);
-      console.log(this.lotDesc)
-
+      this.lotDesc = this.desc;
     }
   }
 </script>
@@ -73,6 +64,7 @@
       font-size: .28rem;
       line-height: .42rem;
       color: #333;
+      transition: all 1s;
     }
     &-more {
       height: .6rem;

@@ -1,7 +1,6 @@
 <template>
   <aside class="dev">
-    <VueDescription :line="'3'">
-      {{desc}}
+    <VueDescription :line="'3'" :desc="desc">
     </VueDescription>
   </aside>
 </template>
